@@ -1,7 +1,11 @@
 import consumer from "./consumer"
 import store from 'store'
 
+import { EventEmitter } from 'events';
+
 export function connect(id) {
+  const events = new EventEmitter();
+
   return consumer.subscriptions.create(
     { channel: "RoomChannel", id: id },
     {
@@ -10,6 +14,7 @@ export function connect(id) {
       },
 
       disconnected() {
+        events.removeAllListeners()
         // Called when the subscription has been terminated by the server
       },
 
@@ -20,6 +25,13 @@ export function connect(id) {
             data.params || {}
           )
         }
+
+        if (data.move) {
+          events.emit('move', data.move)
+        }
+      },
+      on(event, callback) {
+        events.on(event, callback)
       }
     }
   );

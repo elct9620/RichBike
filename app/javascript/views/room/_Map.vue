@@ -28,8 +28,12 @@ export default {
       markers: null
     }
   },
+  props: {
+    channel: { type: Object, required: true }
+  },
   mounted() {
     this.initialize()
+    this.channel.on('move', latLng => this.onMove(latLng))
   },
   computed: {
     ...mapGetters({
@@ -64,6 +68,9 @@ export default {
         marker.bindTooltip(station.name, { permanent: true, direction: 'top' })
         this.markers.addLayer(marker)
       })
+    },
+    onMove(latLng) {
+      this.map.panTo(leaflet.latLng(latLng))
     }
   },
   watch: {

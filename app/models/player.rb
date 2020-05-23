@@ -28,6 +28,7 @@ class Player < ApplicationRecord
 
   after_commit do
     RoomChannel.broadcast_to(room, command: 'loadRoomPlayers', params: room.id, user: user)
+    RoomChannel.broadcast_to(room, move: [station.latitude, station.longitude])
   end
 
   validates :user, uniqueness: { scope: :room_id }

@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col-md-8">
-        <Map />
+        <Map :channel="channel" />
       </div>
       <div class="col-md-4">
         <PlayerList :players="players" />
