@@ -7,7 +7,13 @@ class RollService
   end
 
   def perform
-    state.update(station_id: next_station_id)
+    ActiveRecord::Base.transaction do
+      state.update(station_id: next_station_id)
+      @room.events.create(
+        user: @player,
+        message: "移動了 #{dices.sum} 站"
+      )
+    end
   end
 
   def state
@@ -16,7 +22,7 @@ class RollService
   end
 
   def dices
-    [Random.rand(1..6), Random.rand(1..6)]
+    @dices ||= [Random.rand(1..6), Random.rand(1..6)]
   end
 
   def stations

@@ -30,6 +30,7 @@ class Room < ApplicationRecord
 
   has_many :players, dependent: :destroy
   has_many :users, through: :players
+  has_many :events, class_name: 'RoomEvent', dependent: :destroy
 
   enum state: {
     pending: 'pending',
