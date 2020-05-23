@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   root 'lobby#index'
 
   namespace :api do
-    resources :rooms
+    resources :rooms do
+      member do
+        post :join
+      end
+    end
   end
 end

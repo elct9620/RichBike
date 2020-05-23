@@ -11,7 +11,7 @@
     </div>
     <div class="row">
       <div class="col-md-3" v-for="(room, idx) in items" :key="idx">
-        <Room :name="room.name" />
+        <Room :name="room.name" :id="room.id" />
       </div>
     </div>
     <CreateRoomForm :show.sync="formEnabled" />
