@@ -28,6 +28,9 @@ class Room < ApplicationRecord
 
   belongs_to :user
 
+  has_many :players, dependent: :destroy
+  has_many :users, through: :players
+
   enum state: {
     pending: 'pending',
     started: 'started',
@@ -49,6 +52,10 @@ class Room < ApplicationRecord
   end
 
   validates :state, presence: true
+
+  def join(player)
+    players << player
+  end
 
   def ready?
     # TODO: players.reduce(true, &:ready?)

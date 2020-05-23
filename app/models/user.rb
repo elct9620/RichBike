@@ -25,4 +25,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :rooms, dependent: :nullify
+  has_many :players, dependent: :destroy
+  has_many :joined_rooms, class_name: 'Room', through: :players, source: :room
 end
