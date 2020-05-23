@@ -26,4 +26,8 @@ class RoomEvent < ApplicationRecord
   belongs_to :user
 
   scope :recent, -> { order(created_at: :desc) }
+
+  after_commit do
+    RoomChannel.broadcast_to(room, command: 'loadRoomEvents', params: room.id, user: user)
+  end
 end
