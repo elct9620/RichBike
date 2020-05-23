@@ -5,7 +5,7 @@
         <Map />
       </div>
       <div class="col-md-4">
-        Player & Events
+        <PlayerList :players="players" />
       </div>
     </div>
   </div>
@@ -15,6 +15,7 @@
 import { mapGetters, mapActions } from 'vuex'
 
 import Map from './_Map'
+import PlayerList from './_PlayerList'
 
 export default {
   data() {
@@ -22,19 +23,23 @@ export default {
     }
   },
   components: {
-    Map
+    Map,
+    PlayerList
   },
   created() {
     this.loadStations()
+    this.loadRoomPlayers(this.$route.params.id)
   },
   computed: {
     ...mapGetters({
       stations: 'getStations',
+      players: 'getRoomPlayers',
     })
   },
   methods: {
     ...mapActions([
       'loadStations',
+      'loadRoomPlayers',
     ]),
   }
 }

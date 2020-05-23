@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       member do
         post :join
       end
+
+      resources :players, controller: 'rooms/players'
     end
 
     resources :stations, only: %i[index]

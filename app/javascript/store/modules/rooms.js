@@ -1,4 +1,4 @@
-const PREFIX = 'ROOM.'
+const PREFIX = 'ROOMS.'
 
 const types = {
   LOAD: `${PREFIX}LOAD`,
