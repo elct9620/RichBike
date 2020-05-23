@@ -17,5 +17,7 @@ Rails.application.routes.draw do
         post :join
       end
     end
+
+    resources :stations, only: %i[index]
   end
 end
