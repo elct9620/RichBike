@@ -1,4 +1,5 @@
 import consumer from "./consumer"
+import store from 'store'
 
 consumer.subscriptions.create("LobbyChannel", {
   connected() {
@@ -10,6 +11,13 @@ consumer.subscriptions.create("LobbyChannel", {
   },
 
   received(data) {
+    if (data.command) {
+      switch(data.command) {
+        case 'reload':
+          store.dispatch('loadRooms')
+          break;
+      }
+    }
     // Called when there's incoming data on the websocket for this channel
   }
 });
