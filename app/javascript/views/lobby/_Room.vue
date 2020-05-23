@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import router from 'router'
+
 export default {
   default() {
     return {
@@ -39,6 +41,9 @@ export default {
         }
       )
         .then(res => res.json())
+        .then(room => {
+          router.push({ path: `/room/${room.id}`})
+        })
         // TODO: Handle Error
     }
   }

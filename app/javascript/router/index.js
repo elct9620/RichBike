@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Container from 'views/layouts/Application'
 import Lobby from 'views/lobby/Index'
+import Room from 'views/room/Index'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,11 @@ const routes = [
         name: '大廳',
         component: Lobby
       },
+      {
+        path: 'room/:id',
+        name: '遊戲',
+        component: Room
+      }
     ]
   }
 ]
