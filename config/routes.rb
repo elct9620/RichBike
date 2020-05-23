@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       end
 
       resources :players, controller: 'rooms/players'
+      resources :events, controller: 'rooms/events'
     end
 
     resources :stations, only: %i[index]

@@ -24,4 +24,6 @@
 class RoomEvent < ApplicationRecord
   belongs_to :room
   belongs_to :user
+
+  scope :recent, -> { order(created_at: :desc) }
 end

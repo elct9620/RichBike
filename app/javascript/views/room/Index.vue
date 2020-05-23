@@ -6,6 +6,7 @@
       </div>
       <div class="col-md-4">
         <PlayerList :players="players" />
+        <Event :events="events" />
       </div>
     </div>
   </div>
@@ -18,6 +19,7 @@ import { connect } from 'channels/room_channel'
 
 import Map from './_Map'
 import PlayerList from './_PlayerList'
+import Event from './_Event'
 
 export default {
   data() {
@@ -27,11 +29,13 @@ export default {
   },
   components: {
     Map,
+    Event,
     PlayerList
   },
   created() {
     this.loadStations()
     this.loadRoomPlayers(this.$route.params.id)
+    this.loadRoomEvents(this.$route.params.id)
 
     this.channel = connect(this.$route.params.id)
   },
@@ -42,11 +46,13 @@ export default {
     ...mapGetters({
       stations: 'getStations',
       players: 'getRoomPlayers',
+      events: 'getRoomEvents',
     })
   },
   methods: {
     ...mapActions([
       'loadStations',
+      'loadRoomEvents',
       'loadRoomPlayers',
     ]),
   }
