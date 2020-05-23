@@ -22,7 +22,7 @@
 class Room < ApplicationRecord
   include AASM
 
-  after_create_commit do
+  after_commit do
     ActionCable.server.broadcast('Lobby', command: :reload)
   end
 
