@@ -93,3 +93,5 @@ gem 'oj'
 gem 'devise', '~> 4.7'
 
 gem 'aasm', '~> 5.0'
+
+gem 'redis', '~> 4.1'

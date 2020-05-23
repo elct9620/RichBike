@@ -10,6 +10,7 @@
 import { mapGetters, mapActions } from 'vuex'
 
 import Room from './_Room'
+import LobbyChannel from 'channels/lobby_channel'
 
 export default {
   name: 'Lobby',

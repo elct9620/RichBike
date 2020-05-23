@@ -22,6 +22,10 @@
 class Room < ApplicationRecord
   include AASM
 
+  after_create_commit do
+    ActionCable.server.broadcast('Lobby', command: :reload)
+  end
+
   belongs_to :user
 
   enum state: {
