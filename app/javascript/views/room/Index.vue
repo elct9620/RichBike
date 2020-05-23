@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 import Map from './_Map'
 
 export default {
@@ -21,6 +23,19 @@ export default {
   },
   components: {
     Map
+  },
+  created() {
+    this.loadStations()
+  },
+  computed: {
+    ...mapGetters({
+      stations: 'getStations',
+    })
+  },
+  methods: {
+    ...mapActions([
+      'loadStations',
+    ]),
   }
 }
 </script>
