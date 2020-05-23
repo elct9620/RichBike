@@ -33,7 +33,7 @@ export default {
   },
   mounted() {
     this.initialize()
-    this.channel.on('move', latLng => this.onMove(latLng))
+    this.channel.on('move', (latLng, name) => this.onMove(latLng, name))
   },
   computed: {
     ...mapGetters({
@@ -53,7 +53,7 @@ export default {
       if (this.stations[0]) {
         center = [this.stations[0].latitude, this.stations[0].longitude]
       }
-      this.map.setView(center, 15)
+      this.map.setView(center, 16)
     },
     addMarkers() {
       this.stations.forEach(station => {
@@ -65,11 +65,11 @@ export default {
               title: station.name
             }
           )
-        marker.bindTooltip(station.name, { permanent: true, direction: 'top' })
+        marker.bindTooltip(station.name, { direction: 'top' })
         this.markers.addLayer(marker)
       })
     },
-    onMove(latLng) {
+    onMove(latLng, name) {
       this.map.panTo(leaflet.latLng(latLng))
     }
   },

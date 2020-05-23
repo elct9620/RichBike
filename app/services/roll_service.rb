@@ -8,6 +8,7 @@ class RollService
 
   def perform
     ActiveRecord::Base.transaction do
+      state.increment(:calories, dices.sum * 10)
       state.update(station_id: next_station_id)
       @room.events.create(
         user: @player,

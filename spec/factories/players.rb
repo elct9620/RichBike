@@ -5,6 +5,7 @@
 # Table name: players
 #
 #  id         :bigint           not null, primary key
+#  calories   :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  room_id    :bigint           not null

@@ -5,6 +5,7 @@
 # Table name: players
 #
 #  id         :bigint           not null, primary key
+#  calories   :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  room_id    :bigint           not null
@@ -28,7 +29,7 @@ class Player < ApplicationRecord
 
   after_commit do
     RoomChannel.broadcast_to(room, command: 'loadRoomPlayers', params: room.id, user: user)
-    RoomChannel.broadcast_to(room, move: [station.latitude, station.longitude])
+    RoomChannel.broadcast_to(room, move: [station.latitude, station.longitude], name: station.name)
   end
 
   validates :user, uniqueness: { scope: :room_id }

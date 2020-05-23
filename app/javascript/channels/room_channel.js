@@ -27,7 +27,7 @@ export function connect(id) {
         }
 
         if (data.move) {
-          events.emit('move', data.move)
+          events.emit('move', data.move, data.name)
         }
       },
       on(event, callback) {

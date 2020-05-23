@@ -21,6 +21,9 @@
               {{ item.station.name }}
             </td>
           </template>
+          <template #calories="{ item }">
+            <td>{{ item.calories }}</td>
+          </template>
       </CDataTable>
     </CCardBody>
     <CCardFooter>
@@ -47,6 +50,9 @@ export default {
       }, {
         key: 'station',
         label: '站點'
+      }, {
+        key: 'calories',
+        label: '卡路里'
       }]
     }
   },
