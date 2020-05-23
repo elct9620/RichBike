@@ -54,6 +54,8 @@ class Room < ApplicationRecord
   validates :state, presence: true
 
   def join(player)
+    return true if users.include?(player)
+
     users << player
   end
 

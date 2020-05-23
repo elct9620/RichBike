@@ -44,7 +44,7 @@ export default {
         .then(room => {
           router.push({ path: `/room/${room.id}`})
         })
-        // TODO: Handle Error
+        .catch(err => console.warn(err)) // TODO: Handle Error
     }
   }
 }

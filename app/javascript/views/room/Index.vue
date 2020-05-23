@@ -14,12 +14,15 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
+import { connect } from 'channels/room_channel'
+
 import Map from './_Map'
 import PlayerList from './_PlayerList'
 
 export default {
   data() {
     return {
+      channel: null,
     }
   },
   components: {
@@ -29,6 +32,11 @@ export default {
   created() {
     this.loadStations()
     this.loadRoomPlayers(this.$route.params.id)
+
+    this.channel = connect(this.$route.params.id)
+  },
+  beforeRouteLeave() {
+    this.channel.unsubscribe()
   },
   computed: {
     ...mapGetters({
