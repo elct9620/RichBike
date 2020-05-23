@@ -23,6 +23,17 @@
           </template>
       </CDataTable>
     </CCardBody>
+    <CCardFooter>
+      <div class="text-right">
+        <button
+          type="button"
+          class="btn btn-primary"
+          @click="roll"
+          >
+          行動
+        </button>
+      </div>
+    </CCardFooter>
   </CCard>
 </template>
 
@@ -41,6 +52,17 @@ export default {
   },
   props: {
     players: { type: Array, default: [] }
+  },
+  methods: {
+    async roll() {
+      const res = await fetch(
+        `/api/rooms/${this.$route.params.id}/roll`,
+        {
+          method: 'POST',
+          headers: new Headers({ 'Content-Type': 'application/json' }),
+        }
+      ).then(res => res.json())
+    }
   }
 }
 </script>

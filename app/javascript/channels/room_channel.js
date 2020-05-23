@@ -1,4 +1,5 @@
 import consumer from "./consumer"
+import store from 'store'
 
 export function connect(id) {
   return consumer.subscriptions.create(
@@ -13,7 +14,12 @@ export function connect(id) {
       },
 
       received(data) {
-        // Called when there's incoming data on the websocket for this channel
+        if (data.command) {
+          store.dispatch(
+            data.command,
+            data.params || {}
+          )
+        }
       }
     }
   );

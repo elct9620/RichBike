@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :rooms do
       member do
         post :join
+        post :roll
       end
 
       resources :players, controller: 'rooms/players'

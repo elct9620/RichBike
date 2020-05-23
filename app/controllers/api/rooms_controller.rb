@@ -2,7 +2,7 @@
 
 module Api
   class RoomsController < Api::BaseController
-    before_action :find_room, only: %i[join]
+    before_action :find_room, except: %i[index create]
 
     def index
       render json: Room.pending
@@ -18,6 +18,15 @@ module Api
       @room.join(current_user)
 
       render json: @room
+    end
+
+    def roll
+      return unless @room.users.include?(current_user)
+
+      service = RollService.new(@room, current_user)
+      service.perform
+
+      render json: service.state
     end
 
     private

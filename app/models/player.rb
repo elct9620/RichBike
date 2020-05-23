@@ -26,5 +26,9 @@ class Player < ApplicationRecord
   belongs_to :user
   belongs_to :station, optional: true
 
+  after_commit do
+    RoomChannel.broadcast_to(room, command: 'loadRoomPlayers', params: room.id, user: user)
+  end
+
   validates :user, uniqueness: { scope: :room_id }
 end
