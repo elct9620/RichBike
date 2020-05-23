@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card-group">
+        <div class="card p-4">
+          <div class="card-body">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <h1><%= t('.register') %></h1>
+              <p class="text-muted"><%= t('.create_your_account') %></p>
+              <% if resource.errors.any? %>
+              <p class="text-muted">
+                <ul>
+                <% resource.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </p>
+              <% end %>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="<%= asset_pack_path "media/sprites/brand.svg" %>#cib-mail-ru"></use>
+                    </svg>
+                  </span>
+                </div>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "player@example.com" %>
+              </div>
+
+              <div class="controls">
+                <div class="input-prepend input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <svg class="c-icon">
+                        <use xlink:href="<%= asset_pack_path "media/sprites/free.svg" %>#cil-lock-locked"></use>
+                      </svg>
+                    </span>
+                  </div>
+                  <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder:  "******" %>
+                </div>
+                <% if @minimum_password_length %>
+                  <p class="help-block mb-2">
+                    <%= @minimum_password_length %> characters minimum
+                  </p>
+                <% end %>
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="<%= asset_pack_path "media/sprites/free.svg" %>#cil-lock-locked"></use>
+                    </svg>
+                  </span>
+                </div>
+                <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder:  "******" %>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <%= f.submit "Register", class: "btn btn-primary px-4" %>
+                </div>
+                <div class="col-6 text-right">
+                  <%= link_to 'Login', new_user_session_path, class: 'btn btn-small btn-dark px-4' %>
+                  <%# render "devise/shared/links" %>
+                </div>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
