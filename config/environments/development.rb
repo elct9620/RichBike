@@ -73,4 +73,5 @@ Rails.application.configure do
   end
 
   config.hosts << '.test'
+  config.hosts << '.ngrok.io'
 end
