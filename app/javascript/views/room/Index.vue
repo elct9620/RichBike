@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col-md-8">
-        Map Area
+        <Map />
       </div>
       <div class="col-md-4">
         Player & Events
@@ -12,10 +12,15 @@
 </template>
 
 <script>
+import Map from './_Map'
+
 export default {
   data() {
     return {
     }
+  },
+  components: {
+    Map
   }
 }
 </script>
