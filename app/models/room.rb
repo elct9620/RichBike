@@ -20,6 +20,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Room < ApplicationRecord
+  include AASM
+
   belongs_to :user
 
   enum state: {
@@ -29,7 +31,7 @@ class Room < ApplicationRecord
   }
 
   aasm column: :state, enum: true do
-    state :pending, :initial
+    state :pending, initial: true
     state :started
     state :ended
 
@@ -41,6 +43,8 @@ class Room < ApplicationRecord
       transitions from: :started, to: :ended
     end
   end
+
+  validates :state, presence: true
 
   def ready?
     # TODO: players.reduce(true, &:ready?)

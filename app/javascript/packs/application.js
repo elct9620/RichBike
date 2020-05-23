@@ -19,12 +19,17 @@ require.context('@coreui/icons/sprites', true, /\.svg$/);
 
 import Vue from 'vue'
 import App from 'app'
+import router from 'router'
+import store from 'store'
+
 import CoreuiVue from '@coreui/vue'
 
 Vue.use(CoreuiVue)
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
+    router,
+    store,
     render: h => h(App)
   })
   const $app = document.getElementById('app')
