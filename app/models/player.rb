@@ -24,6 +24,7 @@
 class Player < ApplicationRecord
   belongs_to :room
   belongs_to :user
+  belongs_to :station, optional: true
 
   validates :user, uniqueness: { scope: :room_id }
 end

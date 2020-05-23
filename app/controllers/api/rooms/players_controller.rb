@@ -6,7 +6,8 @@ module Api
       before_action :find_room
 
       def index
-        render json: @room.users
+        render json: @room
+          .players.includes(:station, :user).as_json(include: %i[station user])
       end
 
       private

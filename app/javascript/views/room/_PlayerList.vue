@@ -12,8 +12,13 @@
           :fields="fields"
           >
           <template #name="{ item }">
-            <td class="d-flex">
-              {{ item.email.split('@')[0] }}
+            <td>
+              {{ item.user.email.split('@')[0] }}
+            </td>
+          </template>
+          <template #station="{ item }">
+            <td>
+              {{ item.station.name }}
             </td>
           </template>
       </CDataTable>
@@ -25,7 +30,13 @@
 export default {
   data() {
     return {
-      fields: ['name']
+      fields: [{
+        key: 'name',
+        label: '名稱'
+      }, {
+        key: 'station',
+        label: '站點'
+      }]
     }
   },
   props: {
