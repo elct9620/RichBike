@@ -42,5 +42,5 @@ Style/BlockComments:
     - spec/**/*
 Style/Documentation:
   Enabled: false
-Layout/LineLength:
+Metrics/LineLength:
   Max: 120
